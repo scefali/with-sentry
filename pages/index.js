@@ -1,6 +1,5 @@
 import Link from 'next/link'
 
-
 const Index = () => (
   <div style={{ maxWidth: 700, margin: '0 auto' }}>
     <h2>Sentry Simple Example 🚨</h2>
