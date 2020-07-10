@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Index = () => (
   <div style={{ maxWidth: 700, margin: '0 auto' }}>
-    <h2>New Title 🚨</h2>
+    <h2>Sentry Simple Example 🚨</h2>
     <p>
       This example demonstrates how to record unhandled exceptions in your code
       with Sentry. There are several test pages below that result in various
