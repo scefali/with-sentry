@@ -8,7 +8,7 @@ export async function getServerSideProps() {
     throw new Error('Server Test 2')
   } catch (err){
     Sentry.captureException(err)
-    await Sentry.flush(2000);
+    await Sentry.flush(10000);
     throw err
   }
 }
