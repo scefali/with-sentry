@@ -14,8 +14,9 @@ export async function getServerSideProps() {
     console.error(err)
     Sentry.captureException(err)
     await sleep(4000);
-    throw err
+    // throw err
   }
+  return { props: {} }
 }
 
 export default Test2
