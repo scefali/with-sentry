@@ -1,13 +1,20 @@
-import * as Sentry from '@sentry/node'
+import * as Sentry from "@sentry/node";
 
-process.env.NEXT_PUBLIC_SENTRY_DSN && 
+process.env.NEXT_PUBLIC_SENTRY_DSN &&
   Sentry.init({
     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   });
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 export default async (req, res) => {
-  Sentry.captureException(new Error("Hello"))
-  await Sentry.flush(2000);
-  res.status(200).json({ text: 'Hello' })
-}
+  try {
+    Sentry.captureException(new Error("Hello"));
+    await sleep(2000)
+  } catch (err) {
+    console.error(err);
+  }
+  res.status(200).json({ text: "Hello" });
+};
