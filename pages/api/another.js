@@ -10,10 +10,7 @@ function sleep(ms) {
 }
 
 export default async (req, res) => {
-  try {
-    Sentry.captureException(new Error("Hello"));
-  } catch (err) {
-  }
+  Sentry.captureException(new Error("Another"));
   await sleep(2000)
-  res.status(200).json({ text: "Hello" });
+  res.status(200).json({ text: "Another" });
 };
