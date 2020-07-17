@@ -14,7 +14,6 @@ export default async (req, res) => {
     Sentry.captureException(new Error("Hello"));
     await sleep(2000)
   } catch (err) {
-    console.error(err);
   }
   res.status(200).json({ text: "Hello" });
 };
