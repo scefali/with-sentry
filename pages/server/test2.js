@@ -14,7 +14,7 @@ function sleep(ms) {
 
 export async function getServerSideProps() {
   try {
-    Sentry.captureException(new Error('Server Test 2'))
+    await Sentry.captureException(new Error('Server Test 2'))
     await sleep(4000);
   } catch (err){
     console.error(err)
