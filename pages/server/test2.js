@@ -1,5 +1,10 @@
 import * as Sentry from '@sentry/node'
 
+process.env.NEXT_PUBLIC_SENTRY_DSN &&
+  Sentry.init({
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  });
+
 const Test2 = () => <h1>Server Test 2</h1>
 
 function sleep(ms) {
