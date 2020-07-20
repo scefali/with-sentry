@@ -14,11 +14,10 @@ function sleep(ms) {
 
 export async function getServerSideProps() {
   try {
-    throw new Error('Server Test 2')
-  } catch (err){
-    Sentry.captureException(err)
+    Sentry.captureException(new Error('Server Test 2'))
     await sleep(4000);
-    // throw err
+  } catch (err){
+    console.error(err)
   }
   return { props: {} }
 }
