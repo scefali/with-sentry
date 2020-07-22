@@ -37,6 +37,11 @@ module.exports = withSourceMaps({
       config.resolve.alias["@sentry/node"] = "@sentry/browser";
     }
 
+    const COMMIT_SHA =
+      VERCEL_GITHUB_COMMIT_SHA ||
+      VERCEL_GITLAB_COMMIT_SHA ||
+      VERCEL_BITBUCKET_COMMIT_SHA;
+
     // When all the Sentry configuration env variables are available/configured
     // The Sentry webpack plugin gets pushed to the webpack plugins to build
     // and upload the source maps to sentry.
@@ -47,6 +52,7 @@ module.exports = withSourceMaps({
       SENTRY_ORG &&
       SENTRY_PROJECT &&
       SENTRY_AUTH_TOKEN &&
+      COMMIT_SHA &&
       NODE_ENV === "production"
     ) {
       config.plugins.push(
@@ -54,10 +60,7 @@ module.exports = withSourceMaps({
           include: ".next",
           ignore: ["node_modules"],
           urlPrefix: "~/_next",
-          release:
-            VERCEL_GITHUB_COMMIT_SHA ||
-            VERCEL_GITLAB_COMMIT_SHA ||
-            VERCEL_BITBUCKET_COMMIT_SHA,
+          release: COMMIT_SHA,
         })
       );
     }
